@@ -2,6 +2,7 @@ mod scanner;
 mod token;
 mod error;
 mod lox;
+mod literal;
 
 
 fn main() {

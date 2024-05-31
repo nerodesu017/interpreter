@@ -19,7 +19,13 @@ impl ScannerError for Lox {
 }
 
 impl Lox {
-    pub fn run_file(&mut self, str: String) {}
+    pub fn run_file(&mut self, str: String) {
+
+
+        if self.had_error {
+            std::process::exit(65);
+        }
+    }
 
     pub fn run_prompt(&mut self) {
         let input = std::io::stdin();
@@ -34,15 +40,16 @@ impl Lox {
                 break;
             }
             self.run(line.clone());
+            self.had_error = false;
         }
     }
 
     fn run(&mut self, source: String) {
-      let scanner = Scanner::new(source);
-      let tokens: Vec<Token> = scanner.scan_tokens();
-  
-      for _token in tokens {
-          // println!("{}", token);
-      }
-  }
+        let scanner = Scanner::new(source);
+        let tokens: Vec<Token> = scanner.scan_tokens();
+
+        for _token in tokens {
+            // println!("{}", token);
+        }
+    }
 }
