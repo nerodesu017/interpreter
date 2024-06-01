@@ -1,4 +1,6 @@
 use crate::literal::Literal;
+
+#[derive(Clone)]
 pub struct Token {
     ttype: TokenType,
     lexeme: String,
@@ -34,6 +36,7 @@ impl std::fmt::Display for Token {
     }
 }
 
+#[derive(Clone, Copy)]
 pub enum TokenType {
     // Single-character tokens.
     LeftParen,
