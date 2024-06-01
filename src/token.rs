@@ -23,20 +23,20 @@ impl std::fmt::Display for Token {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(
             f,
-            "{} {} {:#?}",
+            "{} {} {}",
             self.ttype,
             self.lexeme,
+            
             if let Some(lit) = &self.literal {
-                lit
-                // unimplemented!()
+                lit.to_string()
             } else {
-              unimplemented!()
+                String::from("")
             }
         )
     }
 }
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug)]
 pub enum TokenType {
     // Single-character tokens.
     LeftParen,
@@ -89,7 +89,6 @@ pub enum TokenType {
 
 impl std::fmt::Display for TokenType {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        // write!(f,)
-        unimplemented!()
+        write!(f, "{:?}", self)
     }
 }

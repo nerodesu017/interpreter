@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "type": "cppvsdbg",
+      "request": "launch",
+      "name": "run rust_interpreter",
+      "program": "MODIFY_ME",
+      "args": [],
+      "cwd": "${workspaceRoot}",
+      "sourceFileMap": {},
+      "osx": {
+        "MIMode": "lldb"
+      },
+      "console": "integratedTerminal",
+      "preLaunchTask": "Build debug",
+      "windows": {
+        "program": "${workspaceRoot}\\target\\debug\\rust_interpreter.exe",
+      }
+    }
+  ],
+}

@@ -1,4 +1,4 @@
-use std::io::{BufRead, BufReader};
+use std::io::{BufRead, BufReader, Write};
 
 use crate::{error::ScannerError, scanner::Scanner, token::Token};
 
@@ -29,16 +29,24 @@ impl Lox {
 
     pub fn run_prompt(&mut self) {
         let input = std::io::stdin();
+        let mut output = std::io::stdout();
         let mut reader = BufReader::new(input);
 
-        let mut line = String::new();
+        let mut line: String;
 
         loop {
+            line = String::new();
             print!("> ");
+            output.flush().unwrap();
+
             let result = reader.read_line(&mut line);
             if result.is_err() {
                 break;
             }
+            line = line.trim_end().to_owned();
+
+
+            output.flush().unwrap();
             self.run(line.clone());
             self.had_error = false;
         }
@@ -48,8 +56,8 @@ impl Lox {
         let mut scanner = Scanner::new(source, self);
         let tokens: Vec<Token> = scanner.scan_tokens();
 
-        for _token in tokens {
-            // println!("{}", token);
+        for token in tokens {
+            println!("{}", token);
         }
     }
 }
