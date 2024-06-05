@@ -208,10 +208,13 @@ impl<'a> Parser<'a> {
                 Ok(val) => val,
                 Err(e) => return Err(e),
             };
-            self.consume(
+            match self.consume(
                 TokenType::RightParen,
                 "Expect ')' after expression.".to_owned(),
-            );
+            ) {
+                Ok(_) => {},
+                Err(e) => return Err(e)
+            };
             return Ok(Expr::Grouping(grouping_expr::GroupingExpr {
                 expression: Box::new(expr),
             }));
