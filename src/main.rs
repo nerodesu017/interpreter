@@ -13,6 +13,7 @@ mod lox;
 mod scanner;
 mod token;
 mod visitor;
+mod parser;
 
 fn main() {
     let expression = Expr::Binary(BinaryExpr {

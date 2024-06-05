@@ -1,4 +1,4 @@
-use crate::{token::Token, visitor::Visitor};
+use crate::token::Token;
 use super::Expr;
 pub struct AssignExpr {
     pub name: Box<Token>,

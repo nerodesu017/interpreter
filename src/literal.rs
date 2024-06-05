@@ -2,6 +2,8 @@
 pub enum Literal {
     SString(String),
     Float(f64),
+    Boolean(bool),
+    Nil
 }
 
 impl std::fmt::Display for Literal {
@@ -15,6 +17,12 @@ impl std::fmt::Display for Literal {
                 }
                 Literal::SString(val) => {
                     val.to_owned()
+                }
+                Literal::Boolean(val) => {
+                    val.to_string()
+                },
+                Literal::Nil => {
+                    "null".to_owned()
                 }
             }
         )
